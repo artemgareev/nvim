@@ -29,7 +29,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
-  'scrooloose/nerdtree',
+  -- 'scrooloose/nerdtree',
   -- 'Xuyuanp/nerdtree-git-plugin',
   -- 'ryanoasis/vim-devicons',
   -- 'tiagofumo/vim-nerdtree-syntax-highlight',
@@ -39,7 +39,15 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
+  {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      filters = {
+        dotfiles = true,
+      },
+    },
+  },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
@@ -64,7 +72,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -85,7 +93,7 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     config = function()
-      -- vim.cmd.colorscheme 'onedark' 
+      -- vim.cmd.colorscheme 'onedark'
       vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
@@ -112,8 +120,8 @@ require('lazy').setup({
       show_trailing_blankline_indent = false,
     },
   },
--- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim',         opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -157,7 +165,7 @@ require('lazy').setup({
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
   -- { import = 'custom.plugins' },
 }, {})
-
+-- empty setup using defaults
 -- require('vim-nerdtree-syntax-highlight').call('webdevicons#refresh()')
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -234,6 +242,8 @@ require('telescope').setup {
     },
   },
 }
+
+
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -339,9 +349,11 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 
 -- NERDtree configuration
-vim.keymap.set('n', '<C-n>', ':NERDTreeFind<CR>')
-vim.keymap.set('n', '<C-t>', ':NERDTreeToggle<CR>')
+-- vim.keymap.set('n', '<C-n>', ':NERDTreeFind<CR>')
+-- vim.keymap.set('n', '<C-t>', ':NERDTreeToggle<CR>')
 
+vim.keymap.set('n', '<C-t>', ':NvimTreeFindFile<CR>')
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
@@ -447,7 +459,7 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
@@ -466,8 +478,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif luasnip.jumpable( -1) then
+        luasnip.jump( -1)
       else
         fallback()
       end
@@ -478,6 +490,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-vim.opt.guifont = { "Jetbrains Mono" }
+-- vim.opt.guifont = { "Jetbrains Mono" }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
