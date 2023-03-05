@@ -4,6 +4,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.o.concealcursor = 3
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -36,18 +40,8 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-  {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      filters = {
-        dotfiles = true,
-      },
-    },
-  },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
@@ -149,12 +143,10 @@ require('lazy').setup({
     end,
   },
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.go',
+  require 'plugins.go',
+  require 'plugins.nvim-tree',
+  -- require 'plugins.bufferline',
+  require 'plugins.debug',
   -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --    up-to-date with whatever is in the kickstart repo.
@@ -166,7 +158,6 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 }, {})
 -- empty setup using defaults
--- require('vim-nerdtree-syntax-highlight').call('webdevicons#refresh()')
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
@@ -229,7 +220,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -243,7 +233,14 @@ require('telescope').setup {
   },
 }
 
-
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   nested = true,
+--   callback = function()
+--     if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
+--       vim.cmd "quit"
+--     end
+--   end
+-- })
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
