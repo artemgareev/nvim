@@ -24,9 +24,9 @@ local function natural_cmp(left, right)
 end
 
 local options = {
-  sort_by = function(nodes)
-    table.sort(nodes, natural_cmp)
-  end,
+  -- sort_by = function(nodes)
+  --   table.sort(nodes, natural_cmp)
+  -- end,
   filters = {
     dotfiles = true,
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
