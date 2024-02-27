@@ -8,7 +8,9 @@ M.disabled = {
 M.general = {
   n = {
     ["<leader>fm"] = { "<cmd>:Format<CR>", "LSP formatting" },
-  },
+    ["<leader>dt"] = { "<cmd>:DiffviewOpen<CR>", "Open DiffView" },
+    ["<leader>dc"] = { "<cmd>:DiffviewClose<CR>", "Close DiffView" },
+ },
   v = {
     ["J"] = { ":m '>+1<CR>gv=gv", "move selected text down" },
     ["K"] = { ":m '<-2<CR>gv=gv", "Move selected text up" },

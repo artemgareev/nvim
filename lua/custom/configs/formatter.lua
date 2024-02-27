@@ -14,6 +14,7 @@ local M = {
 		},
 		go = {
 			require("formatter.filetypes.go").gofmt,
+			require("formatter.filetypes.go").goimports,
 		},
 		["*"] = {
 			require("formatter.filetypes.any").remove_trailing_whitespace,

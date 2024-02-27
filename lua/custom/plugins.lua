@@ -1,5 +1,6 @@
 local plugins = {
 	{ "tpope/vim-fugitive", lazy = false },
+  { "sindrets/diffview.nvim", lazy = false},
 	{
 		"williamboman/mason.nvim",
 		opts = {
