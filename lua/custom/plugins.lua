@@ -1,13 +1,16 @@
 local plugins = {
 	{ "tpope/vim-fugitive", lazy = false },
-  { "sindrets/diffview.nvim", lazy = false},
+	{ "sindrets/diffview.nvim", lazy = false },
+	{ "mbbill/undotree", lazy = false },
+	{ "nvim-pack/nvim-spectre" },
 	{
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
 				"gopls",
 				"rust-analyzer",
-        "typescript-language-server",
+				"typescript-language-server",
+				"lua-language-server",
 			},
 		},
 	},
