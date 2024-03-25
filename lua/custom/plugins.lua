@@ -11,6 +11,7 @@ local plugins = {
 				"rust-analyzer",
 				"typescript-language-server",
 				"lua-language-server",
+        "pyright",
 			},
 		},
 	},

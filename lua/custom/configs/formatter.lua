@@ -16,6 +16,10 @@ local M = {
 			require("formatter.filetypes.go").gofmt,
 			require("formatter.filetypes.go").goimports,
 		},
+    python = {
+      require("formatter.filetypes.python").yapf,
+      -- require("formatter.filetypes.python").autopep8,
+    },
 		["*"] = {
 			require("formatter.filetypes.any").remove_trailing_whitespace,
 		},
