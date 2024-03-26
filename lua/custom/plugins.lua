@@ -3,6 +3,7 @@ local plugins = {
 	{ "sindrets/diffview.nvim", lazy = false },
 	{ "mbbill/undotree", lazy = false },
 	{ "nvim-pack/nvim-spectre" },
+	{ "github/copilot.vim", lazy = false },
 	{
 		"williamboman/mason.nvim",
 		opts = {
@@ -11,7 +12,7 @@ local plugins = {
 				"rust-analyzer",
 				"typescript-language-server",
 				"lua-language-server",
-        "pyright",
+				"pyright",
 			},
 		},
 	},

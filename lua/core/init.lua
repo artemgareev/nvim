@@ -11,6 +11,8 @@ g.toggle_theme_icon = "   "
 g.transparency = config.ui.transparency
 
 -------------------------------------- options ------------------------------------------
+opt.spelllang = "en_us"
+opt.spell = true
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
